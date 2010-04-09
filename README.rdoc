@@ -33,8 +33,6 @@ To configure maptastic to your needs edit the config/initializers/maptastic.rb f
 
 == Usage
 
-
-
 Examples:
 
   <%= maptastic :center => [37.4419, -122.1419] %>
