@@ -30,7 +30,7 @@ module Maptastic
         else
           return ""
         end
-        return "#{lat};#{lng}"
+        return "#{lat} #{lng}"
       end
       
     end
