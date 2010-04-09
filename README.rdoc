@@ -1,0 +1,42 @@
+= maptastic
+
+The maptastic plugin for Ruby on Rails provides simple and unobtrusive helper methods and javascript libraries to integrate maps in web applications.
+
+== Requirements
+
+Maptastic currently only works with Google Maps and Prototype. This might change in the future but for now that's how it is.
+
+== Install
+
+To install the maptastic gem simply add this line to your Gemfile:
+
+  gem "maptastic"
+  
+and run
+
+  bundle install
+
+Afterwards you can run the generator to get the necessary files installed into your application
+
+  rails generate maptastic:install
+  
+To finalize the installation please set your Google Maps API key in config/initializers/maptastic.rb
+
+== Configuration
+
+To configure maptastic to your needs edit the config/initializers/maptastic.rb file.
+
+== Usage
+
+Examples:
+
+  <%= maptastic :center => [37.4419, -122.1419] %>
+  <%= maptastic :center => @poi %> # @poi.latitude and @poi.longitude are used
+
+Available options:
+
+  <%= maptastic :center => [37.4419, -122.1419], :zoom => 10; controls => true %>
+
+== Copyright
+
+Copyright (c) 2010 Benedikt Deicke. See LICENSE for details.
