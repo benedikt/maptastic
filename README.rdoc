@@ -10,7 +10,7 @@ Maptastic currently only works with Google Maps and Prototype. This might change
 
 To install the maptastic gem simply add this line to your Gemfile:
 
-  gem "maptastic"
+  gem "maptastic", :git => "git://github.com/benedikt/maptastic"
   
 and run
 
