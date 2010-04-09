@@ -28,7 +28,7 @@ module Maptastic
         elsif point.kind_of? Array && point.size >= 2
           lat, lng = point[0], point[1]
         else
-          return ""
+          return nil
         end
         return "#{lat} #{lng}"
       end
