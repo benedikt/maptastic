@@ -25,7 +25,7 @@ module Maptastic
       def coordinates_for(point)
         if point.respond_to?(Maptastic.latitude_attribute) && point.respond_to?(Maptastic.longitude_attribute)
           lat, lng = point.send(Maptastic.latitude_attribute), point.send(Maptastic.longitude_attribute)
-        elsif point.kind_of? Array && point.size >= 2
+        elsif point.kind_of?(Array) && point.size >= 2
           lat, lng = point[0], point[1]
         else
           return nil
