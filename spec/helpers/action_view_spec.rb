@@ -3,7 +3,8 @@ require 'maptastic/view_helpers/action_view'
 
 describe Maptastic::ViewHelpers::ActionView do
   
-  context "#maptastic_provider_tag" do
+  describe "#maptastic_provider_tag" do
+    
     it "should exist" do
       helper.should respond_to :maptastic_provider_tag
     end
@@ -44,7 +45,7 @@ describe Maptastic::ViewHelpers::ActionView do
     end
   end
   
-  context "#maptastic" do
+  describe "#maptastic" do
     
     it "should have a data-map=true attribute" do
       helper.maptastic.should have_selector("div[data-map=true]")
