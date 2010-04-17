@@ -86,6 +86,39 @@ describe Maptastic::ViewHelpers::ActionView do
     it "should not have data-map-center if not specified" do
       helper.maptastic.should_not have_selector("div[data-map-center]")
     end
+    
+    context "with markers" do
+      
+      let(:point) { mock(:latitude => 123, :longitude => 456) }
+      let(:points) { [mock(:latitude => 123, :longitude => 456), mock(:latitude => 654, :longitude => 321)] }
+      
+      it "should use the given point as marker" do
+        helper.maptastic(point).should have_selector("div[data-map-marker=true][data-map-position='123 456']")
+      end
+      
+      it "should use the given point as center" do
+        helper.maptastic(point).should have_selector("div[data-map-center='123 456']")
+      end
+      
+      it "should use the first point as center" do
+        helper.maptastic(points).should have_selector("div[data-map-center='123 456']")
+      end
+      
+      it "should use all points in enumerable as markers" do
+        output = helper.maptastic(points)
+        output.should have_selector("div[data-map-marker=true][data-map-position='123 456']")
+        output.should have_selector("div[data-map-marker=true][data-map-position='654 321']")
+      end
+      
+      it "should render the given block for each marker" do
+        output = helper.maptastic(points) do |point|
+          "--#{point.latitude}-#{point.longitude}--"
+        end
+        output.should contain("--123-456--")
+        output.should contain("--654-321--")
+      end
+      
+    end
         
   end
   

@@ -2,13 +2,17 @@ module Maptastic
   module ViewHelpers
     module ActionView
       
-      def maptastic(options = {}, &block)
+      def maptastic(*args, &block)
+        options = args.extract_options!
+        
+        markers = (args.first.kind_of? Enumerable) ? args.first : [args.first]
+        
         options["data-map"]           = true
         options["data-map-zoom"]      = options.delete(:zoom) || Maptastic.default_zoom_level
         options["data-map-controls"]  = options.delete(:controls)
-        options["data-map-center"]    = coordinates_for(options.delete(:center))
+        options["data-map-center"]    = coordinates_for(options.delete(:center) || markers.first)
         
-        content_tag(:div, "", options)
+        content_tag(:div, marker_html_for(markers, &block), options)
       end
       
       def maptastic_provider_tag
@@ -31,6 +35,18 @@ module Maptastic
           return nil
         end
         return "#{lat} #{lng}"
+      end
+      
+      def marker_html_for(markers, &block)
+        html = "".html_safe
+        markers.each do |marker|
+          options = {
+            "data-map-marker" => true,
+            "data-map-position" => coordinates_for(marker)
+          }
+          html << content_tag(:div, (block_given? ? capture(marker, &block) : ""), options)
+        end
+        html
       end
       
     end

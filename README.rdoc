@@ -33,10 +33,19 @@ To configure maptastic to your needs edit the config/initializers/maptastic.rb f
 
 == Usage
 
-Examples:
+Examples (without markers):
 
   <%= maptastic :center => [37.4419, -122.1419] %>
   <%= maptastic :center => @poi %> # @poi.latitude and @poi.longitude are used
+  
+Examples (with markers):
+
+  <%= maptastic @poi %> # Simple marker without info window
+  <%= maptastic @pois do |poi| %>
+    Generates a marker with info window (bubble). Uses @poi.latitude and @poi.longitude
+    to position the marker.
+    <%= poi.name %>
+  <% end %>
 
 Available options:
 
