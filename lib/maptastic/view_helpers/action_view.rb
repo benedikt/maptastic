@@ -38,15 +38,12 @@ module Maptastic
       end
       
       def marker_html_for(markers, &block)
-        html = "".html_safe
-        markers.each do |marker|
-          options = {
-            "data-map-marker" => true,
-            "data-map-position" => coordinates_for(marker)
-          }
-          html << content_tag(:div, (block_given? ? capture(marker, &block) : ""), options)
+        returning "".html_safe do |html|
+          markers.each do |marker|
+            options = { "data-map-marker" => true, "data-map-position" => coordinates_for(marker) }
+            html << content_tag(:div, (block_given? ? capture(marker, &block) : ""), options)
+          end
         end
-        html
       end
       
     end

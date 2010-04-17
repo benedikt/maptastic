@@ -1,6 +1,6 @@
 module Maptastic
   module Generators
-    class UpdateGenerator < Rails::Generators::Base
+    class UpdateGenerator < Rails::Generators::Base #:nodoc:
       desc "Updates the required javascript files."
 
       def self.source_root

@@ -1,6 +1,6 @@
 module Maptastic
   module Generators
-    class InstallGenerator < Rails::Generators::Base
+    class InstallGenerator < Rails::Generators::Base #:nodoc:
       desc "Creates a Maptastic initializer and copies the required javascript files."
 
       def self.source_root
