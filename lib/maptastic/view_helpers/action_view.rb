@@ -2,15 +2,24 @@ module Maptastic
   module ViewHelpers
     module ActionView
       
+      ##
+      # Generates a simple map.
+      # 
+      # Available options:
+      #
+      # *
+      #
       def maptastic(*args, &block)
         options = args.extract_options!
         
         markers = (args.first.kind_of? Enumerable) ? args.first : [args.first]
         
-        options["data-map"]           = true
-        options["data-map-zoom"]      = options.delete(:zoom) || Maptastic.default_zoom_level
-        options["data-map-controls"]  = options.delete(:controls)
-        options["data-map-center"]    = coordinates_for(options.delete(:center) || markers.first)
+        options["data-map"]                   = true
+        options["data-map-zoom"]              = options.delete(:zoom) || Maptastic.default_zoom_level
+        options["data-map-controls"]          = options.delete(:controls)
+        options["data-map-controls-dragging"] = options.delete(:dragging)
+        options["data-map-controls-zooming"]  = options.delete(:zooming)
+        options["data-map-center"]            = coordinates_for(options.delete(:center) || markers.first)
         
         content_tag(:div, marker_html_for(markers, &block), options)
       end

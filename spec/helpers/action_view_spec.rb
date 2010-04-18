@@ -56,6 +56,14 @@ describe Maptastic::ViewHelpers::ActionView do
       helper.maptastic.should have_selector("div[data-map-zoom='5']")
     end
     
+    { :controls => "data-map-controls",
+      :dragging => "data-map-controls-dragging",
+      :zooming  => "data-map-controls-zooming" }.each_pair do |option, attribute|
+      it "should map option #{option} to attribute #{attribute} " do
+        helper.maptastic(option => true).should have_selector("div[#{attribute}=true]")
+      end
+    end
+    
     it "should have a data-map-zoom attribute set to the given value" do
       helper.maptastic(:zoom => 7).should have_selector("div[data-map-zoom='7']")
     end
@@ -102,6 +110,10 @@ describe Maptastic::ViewHelpers::ActionView do
       
       it "should use the first point as center" do
         helper.maptastic(points).should have_selector("div[data-map-center='123 456']")
+      end
+      
+      it "should use the center option when given" do
+        helper.maptastic(point, :center => [654, 321]).should have_selector("div[data-map-center='654 321']")
       end
       
       it "should use all points in enumerable as markers" do
