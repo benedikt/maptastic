@@ -12,7 +12,7 @@ module Maptastic
       def maptastic(*args, &block)
         options = args.extract_options!
         
-        markers = (args.first.responds_to? :each) ? args.first : [args.first]
+        markers = (args.first.respond_to? :each) ? args.first : [args.first]
         
         options["data-map"]                   = true
         options["data-map-zoom"]              = options.delete(:zoom) || Maptastic.default_zoom_level
