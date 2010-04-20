@@ -9,9 +9,6 @@ module Maptastic
   mattr_accessor :latitude_attribute
   @@latitude_attribute = :latitude
 
-  mattr_accessor :sensor
-  @@sensor = nil
-  
   mattr_accessor :locale
   @@locale = nil
   

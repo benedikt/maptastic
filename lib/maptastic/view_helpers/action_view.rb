@@ -25,12 +25,10 @@ module Maptastic
       end
       
       def maptastic_provider_tag
-        provider_url  = returning("http://maps.google.com/maps?file=api&v=2") do |u|
-          u << "&key=" + Maptastic.api_key
-          u << "&sensor=" + (Maptastic.sensor ? "true" : "false") unless Maptastic.sensor.nil?
-          u << "&hl=" + (Maptastic.locale || I18n.locale).to_s if Maptastic.locale || I18n.locale
-        end
-        javascript_include_tag provider_url
+        autoload = { :modules => [
+          { :name => "maps", :version => "2.X", :language => (Maptastic.locale || I18n.locale).to_s }
+        ] }
+        javascript_include_tag "http://www.google.com/jsapi?autoload=#{url_encode(autoload.to_json)}&key=#{Maptastic.api_key}"
       end
       
       private
