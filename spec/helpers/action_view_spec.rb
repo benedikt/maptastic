@@ -101,6 +101,14 @@ describe Maptastic::ViewHelpers::ActionView do
         helper.maptastic(point, :center => [654, 321]).should have_selector("div[data-map-center='654 321']")
       end
       
+      it "should accept :client as center option" do
+        helper.maptastic(point, :center => :client).should have_selector("div[data-map-center=client]")
+      end
+      
+      it "should accept :marker as center option" do
+        helper.maptastic(point, :center => :marker).should have_selector("div[data-map-center=marker]")
+      end
+      
       it "should use all points in enumerable as markers" do
         output = helper.maptastic(points)
         output.should have_selector("div[data-map-marker=true][data-map-position='123 456']")

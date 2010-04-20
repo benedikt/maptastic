@@ -19,7 +19,10 @@ module Maptastic
         options["data-map-controls"]          = options.delete(:controls)
         options["data-map-controls-dragging"] = options.delete(:dragging)
         options["data-map-controls-zooming"]  = options.delete(:zooming)
-        options["data-map-center"]            = coordinates_for(options.delete(:center) || markers.first)
+        
+        options["data-map-center"] = [:client, :marker].include?(options[:center]) ? 
+            options.delete(:center) : coordinates_for(options.delete(:center) || markers.first)
+        
         
         content_tag(:div, marker_html_for(markers, &block), options)
       end
