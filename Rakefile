@@ -5,6 +5,6 @@ Rspec::Core::RakeTask.new
 desc "Generates a sandbox Rails app for testing"
 namespace :spec do
   task "sandbox" do
-    system "mkdir -p tmp/ && cd tmp && rails sandbox && rm sandbox/Gemfile"
+    system "mkdir -p tmp/ && cd tmp && rails new sandbox && rm sandbox/Gemfile"
   end
 end
