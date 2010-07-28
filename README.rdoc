@@ -8,9 +8,13 @@ Maptastic currently only works with Google Maps and Prototype. This might change
 
 == Install
 
-To install the maptastic gem simply add this line to your Gemfile:
+To install the maptastic gem, simply add it to your Gemfile:
 
-  gem "maptastic", :git => "git://github.com/benedikt/maptastic"
+  gem 'maptastic'
+
+In order to get the latest development version of maptastic:
+
+  gem 'maptastic', :git => 'git://github.com/benedikt/maptastic.git'
 
 and run
 
@@ -25,11 +29,11 @@ To include the required javascripts put these two lines in your application.html
   <%= maptastic_provider_tag %>
   <%= javascript_include_tag 'maptastic' %>
 
-To finalize the installation please set your Google Maps API key in config/initializers/maptastic.rb
+To finalize the installation please set your Google Maps API key in <tt>config/initializers/maptastic.rb</tt>
 
 == Configuration
 
-To configure maptastic to your needs edit the config/initializers/maptastic.rb file.
+To configure maptastic to your needs edit the <tt>config/initializers/maptastic.rb</tt> file.
 
 == Usage
 
