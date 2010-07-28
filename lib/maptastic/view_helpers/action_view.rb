@@ -48,7 +48,7 @@ module Maptastic
       end
       
       def marker_html_for(markers, &block)
-        returning "".html_safe do |html|
+        return "".html_safe.tap do |html|
           markers.each do |marker|
             options = { "data-map-marker" => true, "data-map-position" => coordinates_for(marker) }
             html << content_tag(:div, (block_given? ? capture(marker, &block) : ""), options)
