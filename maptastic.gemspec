@@ -2,7 +2,7 @@ require 'lib/maptastic/version'
 
 Gem::Specification.new do |s|
   s.name          = "maptastic"
-  s.version       = Maptastic::VERSION::STRING
+  s.version       = Maptastic::VERSION
   s.platform      = Gem::Platform::RUBY
   s.authors       = ["Benedikt Deicke"]
   s.email         = ["benedikt@synatic.net"]
