@@ -12,7 +12,7 @@ module Maptastic
       end
 
       def copy_javascripts
-        copy_file "maptastic.js", "public/javascripts/maptastic.js"    
+        copy_file "maptastic.js", "public/javascripts/maptastic.js"
       end
 
     end

@@ -11,7 +11,7 @@ Maptastic currently only works with Google Maps and Prototype. This might change
 To install the maptastic gem simply add this line to your Gemfile:
 
   gem "maptastic", :git => "git://github.com/benedikt/maptastic"
-  
+
 and run
 
   bundle install
@@ -19,12 +19,12 @@ and run
 Afterwards you can run the generator to get the necessary files installed into your application
 
   rails generate maptastic:install
-  
+
 To include the required javascripts put these two lines in your application.html.erb
 
   <%= maptastic_provider_tag %>
-  <%= javascript_include_tag 'maptastic' %> 
-  
+  <%= javascript_include_tag 'maptastic' %>
+
 To finalize the installation please set your Google Maps API key in config/initializers/maptastic.rb
 
 == Configuration
@@ -39,7 +39,7 @@ Examples (without markers):
 
   <%= maptastic :center => [37.4419, -122.1419] %>
   <%= maptastic :center => @poi %> # @poi.latitude and @poi.longitude are used
-  
+
 Examples (with markers):
 
   <%= maptastic @poi %> # Simple marker without info window
