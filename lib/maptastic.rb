@@ -27,11 +27,24 @@ module Maptastic
   @@locale = nil
 
   ##
+  # :singleton-method: region
+  # Gets the defined region
+  mattr_accessor :region
+  @@region = nil
+
+
+  ##
   # :singleton-method: default_zoom_level
   # Gets the default zoom level for maps
   mattr_accessor :default_zoom_level
   @@default_zoom_level = 10
 
+  ##
+  # :singleton-method: sensor
+  # Gets the sensor option (load the api with gps device support)
+  # Default: nil
+  mattr_accessor :sensor
+  @@sensor = nil
 
   ##
   # Configure maptastic

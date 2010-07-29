@@ -13,20 +13,34 @@ describe Maptastic::ViewHelpers::ActionView do
       helper.maptastic_provider_tag.should have_selector("script[type='text/javascript']")
     end
 
-    it "should include the API key in the Url" do
-      Maptastic.stub(:api_key => "SOME_RANDOM_API_KEY")
-      helper.maptastic_provider_tag.should match /key=SOME_RANDOM_API_KEY/
+    it "should use Google Maps API v3" do
+      helper.maptastic_provider_tag.should match /v=3/
     end
 
     it "should use the current I18n.locale" do
       I18n.stub(:locale => :de)
-      helper.maptastic_provider_tag.should match /%22language%22%3A%22de%22/
+      helper.maptastic_provider_tag.should match /language=de/
     end
 
     it "should use the locale defined in the config when available" do
       I18n.stub(:locale => :en)
       Maptastic.stub(:locale => :de)
-      helper.maptastic_provider_tag.should match /%22language%22%3A%22de%22/
+      helper.maptastic_provider_tag.should match /language=de/
+    end
+
+    it "should set the region when defined" do
+      Maptastic.stub(:region => 'GB')
+      helper.maptastic_provider_tag.should match /region=GB/
+    end
+
+    it "should use the sensor parameter if set to true" do
+      Maptastic.stub(:sensor => true)
+      helper.maptastic_provider_tag.should match /sensor=true/
+    end
+
+    it "should use the sensor parameter set to false if not set to true" do
+      Maptastic.stub(:sensor => nil)
+      helper.maptastic_provider_tag.should match /sensor=false/
     end
   end
 

@@ -12,10 +12,18 @@ Maptastic.configure do |config|
 
   # Overrides the locale used to load the Google Maps API
   # Default: Whatever defined as the current I18n.locale
-  # Example: config.locale = :en
+  # config.locale = :en
+
+  # Sets the default region behavior
+  # Default: Autodetected by Google Maps
+  # config.region = 'GB'
 
   # Sets the default zoom level for maps
   # Default: 10
   # config.default_zoom_level = 10
+
+  # Load the API with sensor (gps device) support
+  # Default: nil
+  # config.sensor = false
 end
 
