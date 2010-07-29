@@ -1,4 +1,4 @@
 module Maptastic
-  module Generators
+  module Generators # :nodoc:
   end
 end

@@ -1,3 +1,3 @@
-module Maptastic #:nodoc:
+module Maptastic
   VERSION = '0.1.0'
 end

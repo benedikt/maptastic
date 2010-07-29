@@ -1,6 +1,6 @@
 module Maptastic
 
-  class Railtie < Rails::Railtie
+  class Railtie < Rails::Railtie # :nodoc:
     config.maptastic = Maptastic
 
     initializer "maptastic.action_view" do |app|
