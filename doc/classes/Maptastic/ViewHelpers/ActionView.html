@@ -1,0 +1,125 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang='en'>
+  <head>
+    <title>: Maptastic::ViewHelpers::ActionView [maptastic 0.1.0]</title>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type'>
+    <link href='../../../rdoc-style.css' media='screen' rel='stylesheet' type='text/css'>
+    <script type='text/javascript'>
+      //<![CDATA[
+        function popupCode(url) {
+          window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+        }
+        
+        function toggleCode(id) {
+          var code = document.getElementById(id)
+        
+          code.style.display = code.style.display != 'block' ? 'block' : 'none'
+          return true
+        }
+        
+        // Make codeblocks hidden by default
+        document.writeln('<' + 'style type="text/css">.method .source pre { display: none }<\/style>')
+      //]]>
+    </script>
+  </head>
+  <body class='page'>
+    <div class='class' id='wrapper'>
+      <div class='header'>
+        <h1 class='name'>
+          <span class='type'>Module</span>
+          Maptastic::ViewHelpers::ActionView
+        </h1>
+        <ol class='paths'>
+          <li>
+            <a href="../../../files/lib/maptastic/view_helpers/action_view_rb.html">lib/maptastic/view_helpers/action_view.rb</a>
+          </li>
+        </ol>
+      </div>
+      <div id='content'>
+        <div id='text'>
+          <div id='method-list'>
+            <h2>Methods</h2>
+            <h3>public instance</h3>
+            <ol>
+              <li><a href="#M000008">maptastic</a></li>
+              <li><a href="#M000009">maptastic_provider_tag</a></li>
+            </ol>
+          </div>
+          <div id='section'>
+            <div id='methods'>
+              <h2>Public instance methods</h2>
+              <div class='method public-instance' id='method-M000008'>
+                <a name='M000008'></a>
+                <div class='synopsis'>
+                  <span class='name'>maptastic</span>
+                  <span class='arguments'>(*args, &amp;block)</span>
+                </div>
+                <div class='description'>
+                  <p>
+                  Generates a simple map.
+                  </p>
+                  <p>
+                  Available options:
+                  </p>
+                  <ul>
+                  <li>:zoom &#8212; Map zoom level
+                  
+                  </li>
+                  <li>:controls &#8212; Show UI controls (true / false)
+                  
+                  </li>
+                  <li>:dragging &#8212; Toggle dragging (true / false)
+                  
+                  </li>
+                  <li>:zooming &#8212; Toggle zooming (true / false)
+                  
+                  </li>
+                  <li>:center &#8212; Coordinate to center the map around
+                  
+                  </li>
+                  </ul>
+                  <p>
+                  Examples (without markers):
+                  </p>
+                  <pre>&lt;%= maptastic :center =&gt; [37.4419, -122.1419] %&gt;&#x000A;&lt;%= maptastic :center =&gt; @poi %&gt; # @poi.latitude and @poi.longitude are used</pre>
+                  <p>
+                  Examples (with markers):
+                  </p>
+                  <pre>&lt;%= maptastic @poi %&gt; # Simple marker without info window&#x000A;&lt;%= maptastic @pois do |poi| %&gt;&#x000A;  Generates a marker with info window (bubble). Uses @poi.latitude and @poi.longitude&#x000A;  to position the marker.&#x000A;  &lt;%= poi.name %&gt;&#x000A;&lt;% end %&gt;</pre>
+                </div>
+                <div class='source'>
+                  <a class='source-toggle' href='#' onclick="toggleCode('M000008-source'); return false">
+                    [show source]
+                  </a>
+                  <pre id='M000008-source'><span class="ruby-comment cmt"># File lib/maptastic/view_helpers/action_view.rb, line 29</span>&#x000A;      <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">maptastic</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">args</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)&#x000A;        <span class="ruby-identifier">options</span> = <span class="ruby-identifier">args</span>.<span class="ruby-identifier">extract_options!</span>&#x000A;&#x000A;        <span class="ruby-identifier">markers</span> = (<span class="ruby-identifier">args</span>.<span class="ruby-identifier">first</span>.<span class="ruby-identifier">respond_to?</span> <span class="ruby-identifier">:each</span>) <span class="ruby-operator">?</span> <span class="ruby-identifier">args</span>.<span class="ruby-identifier">first</span> <span class="ruby-operator">:</span> [<span class="ruby-identifier">args</span>.<span class="ruby-identifier">first</span>]&#x000A;&#x000A;        <span class="ruby-identifier">options</span>[<span class="ruby-value str">&quot;data-map&quot;</span>]                   = <span class="ruby-keyword kw">true</span>&#x000A;        <span class="ruby-identifier">options</span>[<span class="ruby-value str">&quot;data-map-zoom&quot;</span>]              = <span class="ruby-identifier">options</span>.<span class="ruby-identifier">delete</span>(<span class="ruby-identifier">:zoom</span>) <span class="ruby-operator">||</span> <span class="ruby-constant">Maptastic</span>.<span class="ruby-identifier">default_zoom_level</span>&#x000A;        <span class="ruby-identifier">options</span>[<span class="ruby-value str">&quot;data-map-controls&quot;</span>]          = <span class="ruby-identifier">options</span>.<span class="ruby-identifier">delete</span>(<span class="ruby-identifier">:controls</span>)&#x000A;        <span class="ruby-identifier">options</span>[<span class="ruby-value str">&quot;data-map-controls-dragging&quot;</span>] = <span class="ruby-identifier">options</span>.<span class="ruby-identifier">delete</span>(<span class="ruby-identifier">:dragging</span>)&#x000A;        <span class="ruby-identifier">options</span>[<span class="ruby-value str">&quot;data-map-controls-zooming&quot;</span>]  = <span class="ruby-identifier">options</span>.<span class="ruby-identifier">delete</span>(<span class="ruby-identifier">:zooming</span>)&#x000A;&#x000A;        <span class="ruby-identifier">options</span>[<span class="ruby-value str">&quot;data-map-center&quot;</span>] = [<span class="ruby-identifier">:client</span>, <span class="ruby-identifier">:marker</span>].<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">options</span>[<span class="ruby-identifier">:center</span>]) <span class="ruby-operator">?</span>&#x000A;            <span class="ruby-identifier">options</span>.<span class="ruby-identifier">delete</span>(<span class="ruby-identifier">:center</span>) <span class="ruby-operator">:</span> <span class="ruby-identifier">coordinates_for</span>(<span class="ruby-identifier">options</span>.<span class="ruby-identifier">delete</span>(<span class="ruby-identifier">:center</span>) <span class="ruby-operator">||</span> <span class="ruby-identifier">markers</span>.<span class="ruby-identifier">first</span>)&#x000A;&#x000A;&#x000A;        <span class="ruby-identifier">content_tag</span>(<span class="ruby-identifier">:div</span>, <span class="ruby-identifier">marker_html_for</span>(<span class="ruby-identifier">markers</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>), <span class="ruby-identifier">options</span>)&#x000A;      <span class="ruby-keyword kw">end</span></pre>
+                </div>
+              </div>
+              <div class='method public-instance' id='method-M000009'>
+                <a name='M000009'></a>
+                <div class='synopsis'>
+                  <span class='name'>maptastic_provider_tag</span>
+                  <span class='arguments'>()</span>
+                </div>
+                <div class='description'>
+                  <p>
+                  Includes the Google Maps API tag.
+                  </p>
+                </div>
+                <div class='source'>
+                  <a class='source-toggle' href='#' onclick="toggleCode('M000009-source'); return false">
+                    [show source]
+                  </a>
+                  <pre id='M000009-source'><span class="ruby-comment cmt"># File lib/maptastic/view_helpers/action_view.rb, line 49</span>&#x000A;      <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">maptastic_provider_tag</span>&#x000A;        <span class="ruby-identifier">provider_url</span> = <span class="ruby-value str">&quot;http://maps.google.com/maps/api/js?v=3&quot;</span>.<span class="ruby-identifier">tap</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">u</span><span class="ruby-operator">|</span>&#x000A;          <span class="ruby-identifier">u</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-value str">&quot;&amp;sensor=&quot;</span> <span class="ruby-operator">+</span> (<span class="ruby-constant">Maptastic</span>.<span class="ruby-identifier">sensor</span> <span class="ruby-value">? </span><span class="ruby-value str">&quot;true&quot;</span> <span class="ruby-operator">:</span> <span class="ruby-value str">&quot;false&quot;</span>)&#x000A;          <span class="ruby-identifier">u</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-value str">&quot;&amp;language=&quot;</span> <span class="ruby-operator">+</span> (<span class="ruby-constant">Maptastic</span>.<span class="ruby-identifier">locale</span> <span class="ruby-operator">||</span> <span class="ruby-constant">I18n</span>.<span class="ruby-identifier">locale</span>).<span class="ruby-identifier">to_s</span> <span class="ruby-keyword kw">if</span> <span class="ruby-constant">Maptastic</span>.<span class="ruby-identifier">locale</span> <span class="ruby-operator">||</span> <span class="ruby-constant">I18n</span>.<span class="ruby-identifier">locale</span>&#x000A;          <span class="ruby-identifier">u</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-value str">&quot;&amp;region=&quot;</span> <span class="ruby-operator">+</span> <span class="ruby-constant">Maptastic</span>.<span class="ruby-identifier">region</span> <span class="ruby-keyword kw">if</span> <span class="ruby-constant">Maptastic</span>.<span class="ruby-identifier">region</span>&#x000A;        <span class="ruby-keyword kw">end</span>&#x000A;        <span class="ruby-identifier">javascript_include_tag</span> <span class="ruby-identifier">provider_url</span>&#x000A;      <span class="ruby-keyword kw">end</span></pre>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id='footer-push'></div>
+    </div>
+    <div id='footer'>
+      <a href="http://github.com/mislav/hanna/tree/master"><strong>Hanna</strong> RDoc template</a>
+    </div>
+  </body>
+</html>

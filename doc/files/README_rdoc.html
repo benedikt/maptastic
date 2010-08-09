@@ -1,0 +1,117 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang='en'>
+  <head>
+    <title>File: README.rdoc [maptastic 0.1.0]</title>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type'>
+    <link href='../rdoc-style.css' media='screen' rel='stylesheet' type='text/css'>
+    <script type='text/javascript'>
+      //<![CDATA[
+        function popupCode(url) {
+          window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+        }
+        
+        function toggleCode(id) {
+          var code = document.getElementById(id)
+        
+          code.style.display = code.style.display != 'block' ? 'block' : 'none'
+          return true
+        }
+        
+        // Make codeblocks hidden by default
+        document.writeln('<' + 'style type="text/css">.method .source pre { display: none }<\/style>')
+      //]]>
+    </script>
+  </head>
+  <body class='page'>
+    <div class='file' id='wrapper'>
+      <div class='header'>
+        <div class='name'>README.rdoc</div>
+        <div class='paths'>
+          README.rdoc
+        </div>
+        <div class='last-update'>
+          Last Update:
+          <span class='datetime'>Mon Aug 09 15:22:42 +0200 2010</span>
+        </div>
+      </div>
+      <div id='content'>
+        <div id='text'>
+          <div id='description'>
+            <h1>maptastic</h1>
+            <p>
+            The maptastic plugin for Ruby on Rails provides simple and unobtrusive
+            helper methods and javascript libraries to integrate maps in web
+            applications.
+            </p>
+            <h2>Requirements</h2>
+            <p>
+            <a href="../classes/Maptastic.html">Maptastic</a> currently only works with
+            Google Maps and Prototype. This might change in the future but for now
+            that&#8217;s how it is.
+            </p>
+            <h2>Install</h2>
+            <p>
+            To install the maptastic gem, simply add it to your Gemfile:
+            </p>
+            <pre>gem 'maptastic'</pre>
+            <p>
+            In order to get the latest development version of maptastic:
+            </p>
+            <pre>gem 'maptastic', :git =&gt; 'git://github.com/benedikt/maptastic.git'</pre>
+            <p>
+            and run
+            </p>
+            <pre>bundle install</pre>
+            <p>
+            Afterwards you can run the generator to get the necessary files installed
+            into your application
+            </p>
+            <pre>rails generate maptastic:install</pre>
+            <p>
+            To include the required javascripts put these two lines in your
+            application.html.erb
+            </p>
+            <pre>&lt;%= maptastic_provider_tag %&gt;&#x000A;&lt;%= javascript_include_tag 'maptastic' %&gt;</pre>
+            <p>
+            To finalize the installation please set your defaults in
+            <tt>config/initializers/maptastic.rb</tt>
+            </p>
+            <h2>Configuration</h2>
+            <p>
+            To configure maptastic to your needs edit the
+            <tt>config/initializers/maptastic.rb</tt> file.
+            </p>
+            <h2>Usage</h2>
+            <p>
+            Read the API documentation at <a
+            href="http://rdoc.info/projects/benedikt/maptastic">rdoc.info/projects/benedikt/maptastic</a>
+            </p>
+            <p>
+            Examples (without markers):
+            </p>
+            <pre>&lt;%= maptastic :center =&gt; [37.4419, -122.1419] %&gt;&#x000A;&lt;%= maptastic :center =&gt; @poi %&gt; # @poi.latitude and @poi.longitude are used</pre>
+            <p>
+            Examples (with markers):
+            </p>
+            <pre>&lt;%= maptastic @poi %&gt; # Simple marker without info window&#x000A;&lt;%= maptastic @pois do |poi| %&gt;&#x000A;  Generates a marker with info window (bubble). Uses @poi.latitude and @poi.longitude&#x000A;  to position the marker.&#x000A;  &lt;%= poi.name %&gt;&#x000A;&lt;% end %&gt;</pre>
+            <p>
+            Available options:
+            </p>
+            <pre>&lt;%= maptastic :center =&gt; [37.4419, -122.1419], :zoom =&gt; 10; :controls =&gt; true %&gt;</pre>
+            <h2>Copyright</h2>
+            <p>
+            Copyright &#169; 2010 Benedikt Deicke. See <a
+            href="LICENSE.html">LICENSE</a> for details.
+            </p>
+          </div>
+          <div id='section'>
+          </div>
+        </div>
+      </div>
+      <div id='footer-push'></div>
+    </div>
+    <div id='footer'>
+      <a href="http://github.com/mislav/hanna/tree/master"><strong>Hanna</strong> RDoc template</a>
+    </div>
+  </body>
+</html>
