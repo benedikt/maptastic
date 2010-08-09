@@ -1,7 +1,4 @@
 Maptastic.configure do |config|
-  # Set this to your Google Maps API Key
-  config.api_key = "PUT YOUR API KEY HERE"
-
   # Attribute to use to get the longitude of an object
   # Default: :longitude
   # config.longitude_attribute = :lng

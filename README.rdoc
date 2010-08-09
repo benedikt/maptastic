@@ -29,7 +29,7 @@ To include the required javascripts put these two lines in your application.html
   <%= maptastic_provider_tag %>
   <%= javascript_include_tag 'maptastic' %>
 
-To finalize the installation please set your Google Maps API key in <tt>config/initializers/maptastic.rb</tt>
+To finalize the installation please set your defaults in <tt>config/initializers/maptastic.rb</tt>
 
 == Configuration
 

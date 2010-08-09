@@ -3,12 +3,6 @@ require 'maptastic/railtie'
 module Maptastic
 
   ##
-  # :singleton-method: api_key
-  # Stores the application's Google Maps API key.
-  mattr_accessor :api_key
-  @@api_key = ""
-
-  ##
   # :singleton-method: longitude_attribute
   # Gets the attribute name used to get the longitude of an object
   mattr_accessor :longitude_attribute
