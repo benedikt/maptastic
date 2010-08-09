@@ -7,8 +7,25 @@ module Maptastic
       #
       # Available options:
       #
-      # *
+      # - :zoom -- Map zoom level
+      # - :controls -- Show UI controls (true / false)
+      # - :dragging -- Toggle dragging (true / false)
+      # - :zooming -- Toggle zooming (true / false)
+      # - :center -- Coordinate to center the map around
       #
+      # Examples (without markers):
+      #
+      #   <%= maptastic :center => [37.4419, -122.1419] %>
+      #   <%= maptastic :center => @poi %> # @poi.latitude and @poi.longitude are used
+      #
+      # Examples (with markers):
+      #
+      #   <%= maptastic @poi %> # Simple marker without info window
+      #   <%= maptastic @pois do |poi| %>
+      #     Generates a marker with info window (bubble). Uses @poi.latitude and @poi.longitude
+      #     to position the marker.
+      #     <%= poi.name %>
+      #   <% end %>
       def maptastic(*args, &block)
         options = args.extract_options!
 
@@ -27,6 +44,8 @@ module Maptastic
         content_tag(:div, marker_html_for(markers, &block), options)
       end
 
+      ##
+      # Includes the Google Maps API tag.
       def maptastic_provider_tag
         provider_url = "http://maps.google.com/maps/api/js?v=3".tap do |u|
           u << "&sensor=" + (Maptastic.sensor ? "true" : "false")

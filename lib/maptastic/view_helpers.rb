@@ -1,4 +1,4 @@
 module Maptastic
-  module ViewHelpers
+  module ViewHelpers # :nodoc:
   end
 end
