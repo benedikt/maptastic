@@ -37,7 +37,7 @@ To configure maptastic to your needs edit the <tt>config/initializers/maptastic.
 
 == Usage
 
-Read the API documentation at http://rdoc.info/projects/benedikt/maptastic
+Read the API documentation at http://benedikt.github.com/maptastic/doc
 
 Examples (without markers):
 
